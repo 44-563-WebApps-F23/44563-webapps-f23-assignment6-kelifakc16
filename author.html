@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Guess Author</title>
+</head>
+
+<body>
+
+    <h2>Author entry Kelifa</h2>
+    <form action="/submit" method="post">
+        <label for="secret">The hidden author name:</label>
+        <input type="password" id="secret" name="secret" value="Dickens" required><br><br>
+        <label for="guess">Guess the author:</label>
+        <input type="text" id="guess" name="guess" required><br><br>
+        <input type="button" value="Check the guess" onclick="checkAuthor()"><br><br>
+        <div id="result"></div>
+    </form>
+    <script>
+
+        var good = 0;
+        var oops = 0;
+
+        function checkAuthor() {
+            var secret = document.getElementById("secret").value;
+            var guess = document.getElementById("guess").value;
+            var resultElement = document.getElementById("result");
+
+            if (guess === secret) {
+                good++;
+                alert("You got it right!");
+            } else {
+                oops++;
+                alert("Sorry");
+            }
+            resultElement.innerHTML = "Correct guesses: " + good + "<br>Wrong guesses: " + oops;
+
+
+        }
+    </script>
+
+</body>
+
+</html>
