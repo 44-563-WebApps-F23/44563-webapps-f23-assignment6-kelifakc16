@@ -16,10 +16,16 @@
         <input type="button" value="Check the guess" onclick="checkAuthor()"><br><br>
         <div id="result"></div>
     </form>
+    <div class="container">
+
+        <img src="city1.jpg" alt="City Image" onclick="selectImage()" width="100" height="100" />
+
+    </div>
     <script>
 
         var good = 0;
         var oops = 0;
+        let useImage = 1;
 
         function checkAuthor() {
             var secret = document.getElementById("secret").value;
@@ -34,8 +40,26 @@
                 alert("Sorry");
             }
             resultElement.innerHTML = "Correct guesses: " + good + "<br>Wrong guesses: " + oops;
+ }
+       
 
+        function selectImage() {
+            const image = document.querySelector("img");
 
+            switch (useImage) {
+                case 1:
+                    image.src = "city2.jpg";
+                    useImage = 2;
+                    break;
+                case 2:
+                    image.src = "city3.jpg";
+                    useImage = 3;
+                    break;
+                case 3:
+                    image.src = "city1.jpg";
+                    useImage = 1;
+                    break;
+            }
         }
     </script>
 
