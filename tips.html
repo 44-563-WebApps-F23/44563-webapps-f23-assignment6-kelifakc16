@@ -1,53 +1,67 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Looping</title>
-</head>  
+</head>
 
 <body>
 
-<h2>Kelifa shows tip amounts</h2>
-<form>
-    <label for="baseAmount">Enter base amount:</label>
-    <input
-      type="number"
-      id="baseAmount"
-      value="50"
-      name="baseAmount"
-    /><br /><br />
- 
-    <label for="tipPercent">Enter the tip percent:</label>
-    <input
-      type="text"
-      id="tipPercent"
-      name="tipPercent"
-      value="15"
-    /><br /><br />
+    <h2>Kelifa shows tip amounts</h2>
+    <form>
+        <label for="baseAmount">Enter base amount:</label>
+        <input type="number" id="baseAmount" value="50" name="baseAmount" /><br /><br />
 
-    <input
-      type="button"
-      value="Show tip"
-      onclick="tips()"
-    /><br /><br />
+        <label for="tipPercent">Enter the tip percent:</label>
+        <input type="text" id="tipPercent" name="tipPercent" value="15" /><br /><br />
 
-    <div id="result"></div>
-  </form>
-  <script>  function tips() {
-    var baseAmount = document.getElementById("baseAmount").value;
-    var tipPercent = document.getElementById("tipPercent").value;
-    var toShow = "Tips are: ";
-    for (var i = 0; i < 5; i++) {
-      var calculatedTip =
-        (parseFloat(baseAmount) * (parseFloat(tipPercent) + i * 4)) / 100;
-      toShow +=
-        parseFloat(tipPercent) +
-        i * 4 +
-        "% is " +
-        calculatedTip.toFixed(2) +
-        "; ";
-    }
-    document.getElementById("result").innerHTML = toShow;
-  }</script>
+        <input type="button" value="Show tip" onclick="tips()" /><br /><br />
+
+        <div id="result"></div>
+    </form>
+    <form>
+        <label for="baseAmount">More Calculation:</label><br>
+        <label><input type="radio" name="operation" value="sum" onclick="chooseOp()"> Sum</label><br>
+        <label><input type="radio" name="operation" value="diff" onclick="chooseOp()"> Diff</label><br>
+        <label><input type="radio" name="operation" value="mult" onclick="chooseOp()"> Mult</label><br>
+        <div id="resulRadio"></div>
+    </form>
+
+    <script>
+        function tips() {
+            var baseAmount = document.getElementById("baseAmount").value;
+            var tipPercent = document.getElementById("tipPercent").value;
+            var toShow = "Tips are: ";
+            for (var i = 0; i < 5; i++) {
+                var calculatedTip =
+                    (parseFloat(baseAmount) * (parseFloat(tipPercent) + i * 4)) / 100;
+                toShow +=
+                    parseFloat(tipPercent) +
+                    i * 4 +
+                    "% is " +
+                    calculatedTip.toFixed(2) +
+                    "; ";
+            }
+            document.getElementById("result").innerHTML = toShow;
+        }
+        function chooseOp() {
+            var baseAmount = document.getElementById("baseAmount").value;
+            var tipPercent = document.getElementById("tipPercent").value;
+            var operation = document.querySelector('input[name="operation"]:checked').value;
+            var result;
+
+            if (operation === "sum") {
+                result = parseFloat(baseAmount) + parseFloat(tipPercent);
+            } else if (operation === "diff") {
+                result = parseFloat(baseAmount) - parseFloat(tipPercent);
+            } else if (operation === "mult") {
+                result = parseFloat(baseAmount) * parseFloat(tipPercent);
+            }
+
+            document.getElementById("resulRadio").innerHTML = operation.charAt(0).toUpperCase() + operation.slice(1) +
+                " of " + parseFloat(baseAmount) + " and " + parseFloat(tipPercent) + " is " + result;
+        }
+    </script>
 
 
 
@@ -55,4 +69,5 @@
 
 
 </body>
-</html> 
+
+</html>
